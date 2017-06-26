@@ -6,86 +6,71 @@ import {
   ScrollView,
   View,
   TouchableHighlight,
-  Image
+  Image,
+  ToastAndroid
 } from 'react-native'
+import { TabNavigator, StackNavigator } from 'react-navigation'
 import { Button, Card, Icon } from 'react-native-material-design'
 
-export default class MostroApp extends Component {
-  render() {
-    return (
-      <View style={{ flex: 1 }}>
-        <View style={styles.nav}>
-          <Text style={styles.titleMostro}>Mostro Media</Text>
-        </View>
-        <View>
-        </View>
-        <ScrollView style={{ backgroundColor: '#363636'}}>
-          <View style={{ width: '100%', alignItems: 'center'}}>
-            <Image style={{ width: 200 , height: 200}}source={require('./assets/fav-icon-mostro.png')} />
-            <Text style={{ color: 'white', fontSize: 50 ,textAlign: 'center'}}>MOSTRO MEDIA</Text>
-          </View>
 
-            <TouchableHighlight underlayColor="white">
+class HomeScreen extends Component {
+  static navigationOptions = {
+    title: 'Home',
+  }
+  componentDidMount(){
+    ToastAndroid.show('Bienvenid@',ToastAndroid.SHORT)
+    ToastAndroid.show('Haz scroll y mira nuestro contenido, nuestros servicios y nuestro equipo.',ToastAndroid.LONG)
+  }
+  render() {
+    const { navigate } = this.props.navigation
+    return (
+      <View style={{ flex: 1, backgroundColor: '#363636' }}>
+        <Text>Hola</Text>
+           <TouchableHighlight 
+              underlayColor="white"
+              onPress={()=> navigate('Work')}>
               <View style={styles.btnCard}>
-                <Text style={styles.btnCardText}>Mostro Media</Text>
+                <Text style={styles.btnCardText}>Work</Text>
               </View>
-            </TouchableHighlight>          
-                <Card>
-                    <Card.Body>
-                        <Text>Some text to go in the body.</Text>
-                    </Card.Body>
-                    <Card.Actions position="right">
-                        <Button
-                          text='Button A' 
-                          value="ACTION" />
-                    </Card.Actions>
-                </Card>
-                <Card>
-                    <Card.Body>
-                        <Text>Some text to go in the body.</Text>
-                    </Card.Body>
-                    <Card.Actions position="right">
-                        <Button
-                          text='Button A' 
-                          value="ACTION" />
-                    </Card.Actions>
-                </Card>
-                <Card>
-                    <Card.Body>
-                        <Text>Some text to go in the body.</Text>
-                    </Card.Body>
-                    <Card.Actions position="right">
-                        <Button
-                          text='Button A' 
-                          value="ACTION" />
-                    </Card.Actions>
-                </Card>
-                <Card>
-                    <Card.Body>
-                        <Text>Some text to go in the body.</Text>
-                    </Card.Body>
-                    <Card.Actions position="right">
-                        <Button
-                          text='Button A' 
-                          value="ACTION" />
-                    </Card.Actions>
-                </Card>
-                <Card>
-                    <Card.Body>
-                        <Text>Some text to go in the body.</Text>
-                    </Card.Body>
-                    <Card.Actions position="right">
-                        <Button
-                          text='Button A' 
-                          value="ACTION" />
-                    </Card.Actions>
-                </Card>                                                                                
-        </ScrollView>               
+            </TouchableHighlight>                                                                                 
       </View>
     );
   }
 }
 
+class WorkScreen extends Component {
+  static navigationOptions = {
+    title: 'Work'
+  }  
+  render() {
+    return (
+      <View style={{ flex: 1, backgroundColor: '#363636' }}>
+        <Text>Hola desde work</Text>             
+      </View>
+    );
+  }
+}
+
+class TeamScreen extends Component {
+  static navigationOptions = {
+    title: 'Team'
+  }  
+  render() {
+    return (
+      <View style={{ flex: 1, backgroundColor: '#363636' }}>
+        <Text>Hola desde Team</Text>             
+      </View>
+    );
+  }
+}
+
+const MostroApp = TabNavigator({
+  Home: { screen: HomeScreen },
+  Work: { screen: WorkScreen },
+  Team: { screen: TeamScreen }
+})
+
+export default MostroApp
 
 
 const styles = StyleSheet.create({
@@ -93,16 +78,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#E8540D',
     borderBottomWidth: 0,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.8,
     shadowRadius: 10,
-    elevation: 3
+    elevation: 5
   },
   titleMostro:{
+    fontFamily: 'steelfish',
     color: 'white',
-    fontSize: 20,
+    fontSize: 30,
     textAlign: 'center',
-    margin: 10
+    margin: 20
   },
   btnCard:{
     marginLeft: 10,
