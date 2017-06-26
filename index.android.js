@@ -1,12 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   AppRegistry,
   StyleSheet,
   Text,
   ScrollView,
-  View
-} from 'react-native';
-import { Button, Card, Icon } from 'react-native-material-design';
+  View,
+  TouchableHighlight,
+  Image
+} from 'react-native'
+import { Button, Card, Icon } from 'react-native-material-design'
 
 export default class MostroApp extends Component {
   render() {
@@ -15,17 +17,19 @@ export default class MostroApp extends Component {
         <View style={styles.nav}>
           <Text style={styles.titleMostro}>Mostro Media</Text>
         </View>
-        <ScrollView style={{ flex: 4, backgroundColor: '#363636'}}>
-                <Card>
-                    <Card.Body>
-                        <Text>Some text to go in the body.</Text>
-                    </Card.Body>
-                    <Card.Actions position="right">
-                        <Button
-                          text='Button A' 
-                          value="ACTION" />
-                    </Card.Actions>
-                </Card>
+        <View>
+        </View>
+        <ScrollView style={{ backgroundColor: '#363636'}}>
+          <View style={{ width: '100%', alignItems: 'center'}}>
+            <Image style={{ width: 200 , height: 200}}source={require('./assets/fav-icon-mostro.png')} />
+            <Text style={{ color: 'white', fontSize: 50 ,textAlign: 'center'}}>MOSTRO MEDIA</Text>
+          </View>
+
+            <TouchableHighlight underlayColor="white">
+              <View style={styles.btnCard}>
+                <Text style={styles.btnCardText}>Mostro Media</Text>
+              </View>
+            </TouchableHighlight>          
                 <Card>
                     <Card.Body>
                         <Text>Some text to go in the body.</Text>
@@ -99,6 +103,17 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     margin: 10
+  },
+  btnCard:{
+    marginLeft: 10,
+    marginRight: 10,
+    alignItems: 'center',
+    backgroundColor: '#212121',
+    borderRadius: 50,
+  },
+  btnCardText:{
+    padding: 20,
+    color: 'white'
   },
   container: {
     flex: 1,
